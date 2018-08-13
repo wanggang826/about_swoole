@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fe3827d-14e7-4d8e-b64a-3664a77a5c5a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_swoole.php" afterPath="$PROJECT_DIR$/test_swoole.php" />
-    </list>
+    <list default="true" id="3fe3827d-14e7-4d8e-b64a-3664a77a5c5a" name="Default" comment="" />
     <ignored path="about_swoole.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -27,8 +25,8 @@
       <file leaf-file-name="test_swoole.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_swoole.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            <state relative-caret-position="450">
+              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="true" />
               </folding>
@@ -150,12 +148,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1534130964175</updated>
-      <workItem from="1534130966205" duration="6768000" />
+      <workItem from="1534130966205" duration="8544000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6768000" />
+    <option name="totallyTimeSpent" value="8544000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="3775" height="2136" extended-state="6" />
@@ -190,8 +188,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/test_swoole.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        <state relative-caret-position="450">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
           </folding>

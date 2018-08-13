@@ -1,0 +1,7 @@
+[2018-07-19 14:55:46][info] Worker 5 : stop.
+[2018-07-19 14:55:46][info] Worker 3 : stop.
+[2018-07-19 14:55:46][info] Worker 1 : stop.
+[2018-07-19 14:55:46][info] Worker 4 : stop.
+[2018-07-19 14:55:46][info] Worker 0 : stop.
+[2018-07-19 14:55:46][info] Worker 6 : stop.
+[2018-07-19 14:55:46][info] Worker 2 : stop.
