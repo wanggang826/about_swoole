@@ -15,7 +15,7 @@ $server->on('connect',function($server,$fd){
     echo 'Client: Connect.';
 });
 
-//监听接收事件
+//监听接收事件,收到什么发送什么
 $server->on('receive',function($server,$fd,$fromId,$data){
     $server->send($fd,'Server: '.$data);
 });
