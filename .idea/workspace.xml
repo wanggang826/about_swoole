@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fe3827d-14e7-4d8e-b64a-3664a77a5c5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_websocket.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webSocket_server_swoole.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webSocket_server_swoole1.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/webSocket_server_swoole.php" afterPath="$PROJECT_DIR$/webSocket_server_swoole2.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_swoole.php" afterPath="$PROJECT_DIR$/test_swoole.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_websocket.html" afterPath="$PROJECT_DIR$/test_websocket.html" />
     </list>
     <ignored path="about_swoole.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webSocket_server_swoole.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webSocket_server_swoole.php">
+      <file leaf-file-name="webSocket_server_swoole2.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webSocket_server_swoole2.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1020">
+            <state relative-caret-position="330">
               <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
               <folding>
                 <element signature="e#6#84#0#PHP" expanded="true" />
@@ -51,12 +51,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="webSocket_server_swoole1.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webSocket_server_swoole1.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1080">
+              <caret line="36" column="13" selection-start-line="7" selection-start-column="0" selection-end-line="36" selection-end-column="13" />
+              <folding>
+                <element signature="e#6#83#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test_websocket.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_websocket.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="330">
+              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,6 +116,7 @@
         <option value="$PROJECT_DIR$/web_server_swoole.php" />
         <option value="$PROJECT_DIR$/webSocket_server_swoole.php" />
         <option value="$PROJECT_DIR$/test_websocket.html" />
+        <option value="$PROJECT_DIR$/webSocket_server_swoole1.php" />
       </list>
     </option>
   </component>
@@ -222,12 +237,12 @@
       <updated>1534130964175</updated>
       <workItem from="1534130966205" duration="9062000" />
       <workItem from="1534294960576" duration="1817000" />
-      <workItem from="1534750441228" duration="15516000" />
+      <workItem from="1534750441228" duration="20228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26395000" />
+    <option name="totallyTimeSpent" value="31107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="3775" height="2136" extended-state="6" />
@@ -311,9 +326,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webSocket_server_swoole.php">
+    <entry file="file://$PROJECT_DIR$/webSocket_server_swoole1.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020">
+        <state relative-caret-position="1080">
+          <caret line="36" column="13" selection-start-line="7" selection-start-column="0" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="e#6#83#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webSocket_server_swoole2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
           <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
@@ -323,9 +348,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_websocket.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="330">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
