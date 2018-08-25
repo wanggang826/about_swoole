@@ -14,7 +14,7 @@ $ws->on('open', function ($ws, $request) {
     //获取所有连接人存为数组
 
     $GLOBALS['fd'][] = $request->fd;
-    //$ws->push($request->fd, "hello, welcome\n");
+    $ws->push($request->fd, "hello, welcome\n");
 });
 
 //监听WebSocket消息事件
@@ -22,11 +22,15 @@ $ws->on('message', function ($ws, $frame) {
     echo "Message: {$frame->data}\n";
 
 //循环所有连接人发送内容
-
-    foreach($GLOBALS['fd'] as $key => $val){
-        $ws->push($val,$frame->data);
+    foreach($ws->connections as $key => $fd) {
+        $user_message = $frame->data;
+        $ws->push($fd, $user_message);
     }
-    //$ws->push($frame->fd, "{$frame->data}");
+
+//    foreach($GLOBALS['fd'] as $key => $val){
+//        $ws->push($val,$frame->data);
+//    }
+//    $ws->push($frame->fd, "{$frame->data}");
 });
 
 //监听WebSocket连接关闭事件
