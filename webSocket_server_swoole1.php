@@ -8,6 +8,9 @@
 //创建websocket服务器对象，监听0.0.0.0:9502端口
 $ws = new swoole_websocket_server("0.0.0.0", 9999);
 
+$ws->set(array(
+    'daemonize' => true,
+));
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) {
     var_dump($request->fd, $request->get, $request->server);
