@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>webSocket</title>
 </head>
 <body>
+<div id="div" style="width:200px; height:200px;" }>
+
+</div>
 <table>
     <tr>
         <td><input type="text" id="text"></td>
@@ -13,9 +16,7 @@
         <td><input type="button" value="发送" onclick="ab()"></td>
     </tr>
 </table>
-<div id="div" style="width:200px; height:200px;" }>
 
-</div>
 </body>
 <script src="jquery-1.8.2.min.js"></script>
 <script>
@@ -41,6 +42,7 @@
     function ab(){
         var zhi=document.getElementById('text').value;
         websocket.send(zhi);
+        $('#text').val('');
     }
 
 </script>
