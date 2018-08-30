@@ -18,11 +18,13 @@ $ws->set(array(
 $ws->on('open', function ($ws, $request) use($redis) {
 
     var_dump($request->fd, $request->get, $request->server);
-    //获取所有连接人存为数组
+    //记录连接
     $redis->sAdd('fd', $request->fd);
     $all_fd = $redis->sMembers('fd');
+
+    //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
-    $ws->push($request->fd, "hello, welcome\n".$request->fd.':-D   当前'.count($all_fd).'人连接在线');
+    $ws->push($request->fd, "hello, welcome\n 您目前是2号用户".$request->fd.'号用户☺     当前'.count($GLOBALS['fd']).'人连接在线');
 });
 
 //监听WebSocket消息事件
@@ -31,7 +33,7 @@ $ws->on('message', function ($ws, $frame) use($redis) {
     $fds = $redis->sMembers('fd');
     echo "Message: {$frame->data}\n";
     foreach ($fds as $fd){
-        $ws->push($fd,$frame->fd.': '.$frame->data);
+        $ws->push($fd,$frame->fd.'号用户: '.$frame->data);
     }
 //循环所有连接人发送内容
 //    foreach($ws->connections as $key => $fd) {
@@ -51,7 +53,7 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $redis->sRem('fd',$fd);
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
-        $ws->push($fd_on,$fd.'下线断开了');
+        $ws->push($fd_on,$fd.'号用户下线断开了');
     }
     echo "client-{$fd} is closed\n";
 });
