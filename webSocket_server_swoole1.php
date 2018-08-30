@@ -20,14 +20,17 @@ $ws->on('open', function ($ws, $request) use($redis) {
     var_dump($request->fd, $request->get, $request->server);
     //记录连接
     $redis->sAdd('fd', $request->fd);
+
+    //通知所有用户新用户上线
     $fds = $redis->sMembers('fd');
-    unset($fds[$request->fd]);
     foreach ($fds as $fd_on){
-        $ws->push($fd_on,$request->fd.'号用户连接上线了');
+        if($fd_on != $request->fd){
+            $ws->push($fd_on,$request->fd.'号用户连接上线了');
+        }
     }
     //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
-    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺     当前'.count($GLOBALS['fd']).'人连接在线');
+    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺       当前'.count($GLOBALS['fd']).'人连接在线');
 });
 
 //监听WebSocket消息事件
@@ -43,11 +46,6 @@ $ws->on('message', function ($ws, $frame) use($redis) {
 //        $user_message = $frame->data;
 //        $ws->push($fd, $frame->fd.'say:'.$user_message);
 //    }
-
-//    foreach($GLOBALS['fd'] as $key => $val){
-//        $ws->push($val,$frame->data);
-//    }
-//    $ws->push($frame->fd, "{$frame->data}");
 });
 
 //监听WebSocket连接关闭事件

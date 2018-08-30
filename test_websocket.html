@@ -34,7 +34,7 @@
     };
 
     websocket.onmessage = function (evt) {
-        $('#div').append("<b>"+evt.data+"</b><br>");
+        $('#div').append(evt.data+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
         // document.getElementById('div').style.background = evt.data;
         console.log('Retrieved data from server: ' + evt.data);
