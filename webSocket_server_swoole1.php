@@ -31,7 +31,7 @@ $ws->on('open', function ($ws, $request) use($redis) {
     $count = $redis->sCard('fd');
     //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
-    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺       当前'.$count.'人连接在线');
+    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺                     当前'.$count.'人连接在线');
 });
 
 //监听WebSocket消息事件
