@@ -21,8 +21,9 @@ $ws->on('open', function ($ws, $request) use($redis) {
     //记录连接
     $redis->sAdd('fd', $request->fd);
     $fds = $redis->sMembers('fd');
+    unset($fds[$request->fd]);
     foreach ($fds as $fd_on){
-        $ws->push($fd_on,$request->fd.'号用户下线断开了');
+        $ws->push($fd_on,$request->fd.'号用户连接上线了');
     }
     //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
