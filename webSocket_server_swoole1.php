@@ -16,12 +16,14 @@ $ws->set(array(
 ));
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) use($redis) {
-
+    global $redis;
     var_dump($request->fd, $request->get, $request->server);
     //记录连接
     $redis->sAdd('fd', $request->fd);
-    $all_fd = $redis->sMembers('fd');
-
+    $fds = $redis->sMembers('fd');
+    foreach ($fds as $fd_on){
+        $ws->push($fd_on,$request->fd.'号用户下线断开了');
+    }
     //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
     $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺     当前'.count($GLOBALS['fd']).'人连接在线');
