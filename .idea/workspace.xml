@@ -51,8 +51,8 @@
       <file leaf-file-name="webSocket_server_swoole1.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webSocket_server_swoole1.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+            <state relative-caret-position="1610">
+              <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
               <folding>
                 <element signature="e#6#83#0#PHP" expanded="true" />
               </folding>
@@ -241,12 +241,12 @@
       <workItem from="1534130966205" duration="9062000" />
       <workItem from="1534294960576" duration="1817000" />
       <workItem from="1534750441228" duration="34472000" />
-      <workItem from="1535591101323" duration="18936000" />
+      <workItem from="1535591101323" duration="19281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64287000" />
+    <option name="totallyTimeSpent" value="64632000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="3775" height="2136" extended-state="6" />
@@ -419,8 +419,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webSocket_server_swoole1.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        <state relative-caret-position="1610">
+          <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
           <folding>
             <element signature="e#6#83#0#PHP" expanded="true" />
           </folding>

@@ -56,7 +56,6 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
         $ws->push($fd_on,$fd.'号用户下线断开了');
-        $redis->sRem('fd',$fd_on);
     }
     echo "client-{$fd} is closed\n";
 });
