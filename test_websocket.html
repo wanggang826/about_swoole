@@ -5,15 +5,12 @@
     <title>webSocket</title>
 </head>
 <body>
-<div id="div" style="width:200px; height:200px;" }>
+<div id="div" style="width:20%; height:500px;overflow:auto;background: #bef8ff">
 
 </div>
-<table>
+<table style="width: 20%">
     <tr>
-        <td><input type="text" id="text"></td>
-    </tr>
-    <tr>
-        <td><input type="button" value="发送" onclick="ab()"></td>
+        <td width="90%"><input type="text" id="text" style="width: 100%;height: 30px;padding-left: 0;margin-left: 0"></td><td ><input type="button" value="发送" onclick="ab()" style="height: 36px;width: 100%;"></td>
     </tr>
 </table>
 
@@ -31,7 +28,7 @@
     };
 
     websocket.onmessage = function (evt) {
-        $('#div').append(evt.data+"<br>");
+        $('#div').append("<b>"+evt.data+"</b><br>");
         // document.getElementById('div').style.background = evt.data;
         console.log('Retrieved data from server: ' + evt.data);
     };
