@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fe3827d-14e7-4d8e-b64a-3664a77a5c5a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_websocket.html" afterPath="$PROJECT_DIR$/test_websocket.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webSocket_server_swoole1.php" afterPath="$PROJECT_DIR$/webSocket_server_swoole1.php" />
     </list>
     <ignored path="about_swoole.iws" />
@@ -53,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/webSocket_server_swoole1.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="860">
-              <caret line="32" column="77" selection-start-line="32" selection-start-column="77" selection-end-line="32" selection-end-column="77" />
+              <caret line="32" column="91" selection-start-line="32" selection-start-column="91" selection-end-line="32" selection-end-column="91" />
               <folding>
                 <element signature="e#6#83#0#PHP" expanded="true" />
               </folding>
@@ -119,8 +118,8 @@
         <option value="$PROJECT_DIR$/web_server_swoole.php" />
         <option value="$PROJECT_DIR$/webSocket_server_swoole.php" />
         <option value="$PROJECT_DIR$/ttt.php" />
-        <option value="$PROJECT_DIR$/webSocket_server_swoole1.php" />
         <option value="$PROJECT_DIR$/test_websocket.html" />
+        <option value="$PROJECT_DIR$/webSocket_server_swoole1.php" />
       </list>
     </option>
   </component>
@@ -242,12 +241,12 @@
       <workItem from="1534130966205" duration="9062000" />
       <workItem from="1534294960576" duration="1817000" />
       <workItem from="1534750441228" duration="34472000" />
-      <workItem from="1535591101323" duration="17693000" />
+      <workItem from="1535591101323" duration="18280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63044000" />
+    <option name="totallyTimeSpent" value="63631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="3775" height="2136" extended-state="6" />
@@ -421,7 +420,7 @@
     <entry file="file://$PROJECT_DIR$/webSocket_server_swoole1.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="860">
-          <caret line="32" column="77" selection-start-line="32" selection-start-column="77" selection-end-line="32" selection-end-column="77" />
+          <caret line="32" column="91" selection-start-line="32" selection-start-column="91" selection-end-line="32" selection-end-column="91" />
           <folding>
             <element signature="e#6#83#0#PHP" expanded="true" />
           </folding>

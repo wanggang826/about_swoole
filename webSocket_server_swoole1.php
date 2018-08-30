@@ -30,7 +30,7 @@ $ws->on('open', function ($ws, $request) use($redis) {
     }
     //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
-    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺       当前'.count($GLOBALS['fd']).'人连接在线');
+    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺       当前'.count($fds).'人连接在线');
 });
 
 //监听WebSocket消息事件
@@ -55,6 +55,7 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
         $ws->push($fd_on,$fd.'号用户下线断开了');
+        $redis->sRem('fd',$fd_on);
     }
     echo "client-{$fd} is closed\n";
 });
