@@ -36,12 +36,12 @@ $ws->on('message', function ($ws, $frame) use($redis) {
         //通知所有用户新用户上线
         $fds = $redis->sMembers('fd');
         foreach ($fds as $fd_on){
-            $ws->push($fd_on,"欢迎 <b style='color: crimson'>".$data['user']."</b> 进入聊天室");
+            $ws->push($fd_on,"欢迎 <b style='color: chartreuse;'>".$data['user']."</b> 进入聊天室");
         }
     }else if($data['type'] ==2){
         if($data['to_user'] == 'all'){
             foreach ($fds as $fd){
-                $ws->push($fd,"<b style='color: crimson'>".$data['from_user']."say:</b>  ".$data['msg']);
+                $ws->push($fd,"<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg']);
             }
         }
     }
@@ -61,7 +61,7 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
         $user = json_decode($redis->get($fd),true)['user'];
-        $ws->push($fd_on,$user.'离开聊天室了');
+        $ws->push($fd_on,"<b style='color: blueviolet'>".$user."</b> 离开聊天室了");
     }
     echo "client-{$fd} is closed\n";
 });
