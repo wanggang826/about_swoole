@@ -11,9 +11,9 @@ $ws = new swoole_websocket_server("0.0.0.0", 9999);
 $redis = new \Redis();
 $redis->connect('127.0.0.1', 6379);
 
-//$ws->set(array(
-//    'daemonize' => true,
-//));
+$ws->set(array(
+    'daemonize' => true,
+));
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) use($redis) {
     global $redis;
