@@ -1,3 +1,6 @@
+<?php
+$name = $_COOKIE['name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
     <div style="display: inline-block;width: 99%">
         <table style="width: 100%">
             <tr>
-                <td width="90%"><input type="text" id="text" style="width: 100%;height: 25px;padding-left: 0;margin-left: 0"></td><td ><input type="button" value="发送" onclick="ab()" style="height: 31px;width: 100%;"></td>
+                <td width="90%"><input type="text" id="text" style="width: 100%;height: 25px;padding-left: 0;margin-left: 0"></td><td ><input type="button" value="发送" onclick="sendMassage()" style="height: 31px;width: 100%;"></td>
             </tr>
         </table>
     </div>
@@ -43,9 +46,9 @@
     websocket.onerror = function (evt, e) {
         console.log('Error occured: ' + evt.data);
     };
-    function ab(){
-        var zhi=document.getElementById('text').value;
-        websocket.send(zhi);
+    function sendMassage(){
+        var massage=document.getElementById('text').value;
+        websocket.send(massage);
         $('#text').val('');
     }
 
