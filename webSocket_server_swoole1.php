@@ -36,12 +36,12 @@ $ws->on('message', function ($ws, $frame) use($redis) {
         //通知所有用户新用户上线
         $fds = $redis->sMembers('fd');
         foreach ($fds as $fd_on){
-            $ws->push($fd_on,'欢迎'.$data['user'].'进入聊天室');
+            $ws->push($fd_on,'欢迎 '.$data['user'].' 进入聊天室');
         }
     }else if($data['type'] ==2){
         if($data['to_user'] == 'all'){
             foreach ($fds as $fd){
-                $ws->push($fd,$data['user'].' say: '.$data['msg']);
+                $ws->push($fd,"<b style='color: crimson'>".$data['from_user']."</b> say: ".$data['msg']);
             }
         }
     }
