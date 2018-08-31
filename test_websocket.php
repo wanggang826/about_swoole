@@ -50,7 +50,7 @@ $user = $_POST['name'];
     function sendMassage(to_user){
         var massage=document.getElementById('text').value;
         var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
-        websocket.send(massage);
+        websocket.send(msg);
         $('#text').val('');
     }
 
