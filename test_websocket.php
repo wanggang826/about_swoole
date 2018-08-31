@@ -30,7 +30,7 @@ $user = $_POST['name'];
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (evt) {
         console.log("Connected to WebSocket server.");
-        wsServer.send('{"user":"<?php echo $user;?>" ,"type":"1"}')
+        websocket.send('{"user":"<?php echo $user;?>" ,"type":"1"}')
     };
 
     websocket.onclose = function (evt) {
