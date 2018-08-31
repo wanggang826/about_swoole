@@ -36,7 +36,7 @@ $ws->on('message', function ($ws, $frame) use($redis) {
         //通知所有用户新用户上线
         $fds = $redis->sMembers('fd');
         foreach ($fds as $fd_on){
-            $ws->push($fd_on,"欢迎 <b style='color: chartreuse;'>".$data['user']."</b> 进入聊天室");
+            $ws->push($fd_on,"欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室");
         }
     }else if($data['type'] ==2){
         if($data['to_user'] == 'all'){
