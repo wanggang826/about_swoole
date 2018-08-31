@@ -1,5 +1,8 @@
 <?php
 $user = $_POST['name'];
+if(!$user){
+    header('Location:http://sw.wanggangg.top/');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
