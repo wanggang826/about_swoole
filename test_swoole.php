@@ -34,6 +34,7 @@ $server->on('receive',function($server,$fd,$fromId,$data){
 $server->on('WorkerStart',function($server,$worker_id){
     echo 'worker_id :'.$worker_id.' stop. ';
 });
+
 //监听连接关闭事件
 $server->on('close',function($server,$fd){
     echo 'Client: Close';
