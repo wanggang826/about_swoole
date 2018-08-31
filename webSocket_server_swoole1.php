@@ -17,32 +17,36 @@ $redis->connect('127.0.0.1', 6379);
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) use($redis) {
     global $redis;
-    var_dump($request);
     var_dump($request->fd, $request->get, $request->server);
     //记录连接
     $redis->sAdd('fd', $request->fd);
-
-    //通知所有用户新用户上线
-    $fds = $redis->sMembers('fd');
-    foreach ($fds as $fd_on){
-        if($fd_on != $request->fd){
-            $ws->push($fd_on,$request->fd.'号用户连接上线了');
-        }
-    }
     $count = $redis->sCard('fd');
     //获取当前所有连接人存为数组
     $GLOBALS['fd'][] = $request->fd;
-    $ws->push($request->fd, "hello, welcome\n 您目前是".$request->fd.'号用户☺                     当前'.$count.'人连接在线');
+    $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
 });
 
 //监听WebSocket消息事件
 $ws->on('message', function ($ws, $frame) use($redis) {
     global $redis;
-    $fds = $redis->sMembers('fd');
-    echo "Message: {$frame->data}\n";
-    foreach ($fds as $fd){
-        $ws->push($fd,$frame->fd.'号用户: '.$frame->data);
+    $fds  = $redis->sMembers('fd');
+    $data = json_decode($frame->data,true);
+    if($data['type'] ==1 ){
+        $redis->set($frame->fd,json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
+        //通知所有用户新用户上线
+        $fds = $redis->sMembers('fd');
+        foreach ($fds as $fd_on){
+            $ws->push($fd_on,'欢迎'.$data['user'].'进入聊天室');
+        }
+    }else if($data['type'] ==2){
+        if($data['to_user' == 'all']){
+            foreach ($fds as $fd){
+                $ws->push($fd,$data['user'].' say: '.$data['msg']);
+            }
+        }
     }
+    echo "Message: {$frame->data}\n";
+
 //循环所有连接人发送内容
 //    foreach($ws->connections as $key => $fd) {
 //        $user_message = $frame->data;
@@ -56,7 +60,8 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $redis->sRem('fd',$fd);
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
-        $ws->push($fd_on,$fd.'号用户下线断开了');
+        $user = json_decode($redis->get($fd),true)['user'];
+        $ws->push($fd_on,$user.'离开聊天室了');
     }
     echo "client-{$fd} is closed\n";
 });

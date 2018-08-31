@@ -1,5 +1,5 @@
 <?php
-var_dump($_COOKIE);
+$user = $_POST['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ var_dump($_COOKIE);
     <div style="display: inline-block;width: 99%">
         <table style="width: 100%">
             <tr>
-                <td width="90%"><input type="text" id="text" style="width: 100%;height: 25px;padding-left: 0;margin-left: 0"></td><td ><input type="button" value="发送" onclick="sendMassage()" style="height: 31px;width: 100%;"></td>
+                <td width="90%"><input type="text" id="text" style="width: 100%;height: 25px;padding-left: 0;margin-left: 0"></td><td ><input type="button" value="发送" onclick="sendMassage('all')" style="height: 31px;width: 100%;"></td>
             </tr>
         </table>
     </div>
@@ -30,6 +30,7 @@ var_dump($_COOKIE);
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (evt) {
         console.log("Connected to WebSocket server.");
+        wsServer.send('{"user":"<?php echo $user;?>" ,"type":"1"}')
     };
 
     websocket.onclose = function (evt) {
@@ -46,8 +47,9 @@ var_dump($_COOKIE);
     websocket.onerror = function (evt, e) {
         console.log('Error occured: ' + evt.data);
     };
-    function sendMassage(){
+    function sendMassage(to_user){
         var massage=document.getElementById('text').value;
+        var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
         websocket.send(massage);
         $('#text').val('');
     }
