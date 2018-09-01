@@ -12,8 +12,8 @@ class WebSocketServer {
         $this->server = new swoole_websocket_server("0.0.0.0",9988);
         $this->server->set(array(
 //            'daemonize'       => true,
-//            'worker_num'      => 4,
-//            'task_worker_num' => 4
+            'worker_num'      => 4,
+            'task_worker_num' => 4
         ));
 
         $fd_table = new swoole_table( 1024 );
@@ -29,10 +29,10 @@ class WebSocketServer {
         $this->server->user = $user_table;
 
         //启动开始
-//        $this->server->on('Start',[$this,'onStart']);
+        $this->server->on('Start',[$this,'onStart']);
 
         //与onStart同级
-//        $this->server->on('workerStart',[$this,'onWorkerStart']);
+        $this->server->on('workerStart',[$this,'onWorkerStart']);
 
         //webSocket open 连接触发回调
         $this->server->on('open',[$this,'onOpen']);
@@ -45,7 +45,7 @@ class WebSocketServer {
 
 
         //tcp连接 触发 在 webSocket open 之前回调
-//        $this->server->on('Connect', [$this, 'onConnect']);
+        $this->server->on('Connect', [$this, 'onConnect']);
 
 
         //tcp 模式下（eg:telnet ） 发送信息才会触发  webSocket 模式下没有触发
@@ -53,11 +53,11 @@ class WebSocketServer {
 
 
         // task_worker进程处理任务的回调   处理比较耗时的任务
-//        $this->server->on('Task', [$this, 'onTask']);
+        $this->server->on('Task', [$this, 'onTask']);
 
 
         // task_worker进程处理任务结束的回调
-//        $this->server->on('Finish', [$this, 'onFinish']);
+        $this->server->on('Finish', [$this, 'onFinish']);
 
         // 服务开启
         $this->server->start();

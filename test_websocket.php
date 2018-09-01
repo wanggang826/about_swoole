@@ -29,8 +29,8 @@ if(!$user){
 <script src="jquery-1.8.2.min.js"></script>
 <script>
 //    var wsServer = 'ws://47.95.236.88:9999';//这里的IP应该更改
-//    var wsServer = 'ws://47.95.236.88:9988';//这里的IP应该更改
-    var wsServer = 'ws://10.10.10.11:9988';//这里的IP应该更改
+    var wsServer = 'ws://47.95.236.88:9988';//这里的IP应该更改
+//    var wsServer = 'ws://10.10.10.11:9988';//这里的IP应该更改
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (evt) {
         console.log("Connected to WebSocket server.");
