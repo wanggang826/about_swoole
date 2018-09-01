@@ -16,12 +16,12 @@ class WebSocketServer {
 //            'task_worker_num' => 4
         ));
 
-        $fd_table = new swoole_table( 8192 );
+        $fd_table = new swoole_table( 1024 );
         $fd_table->column( "user",swoole_table::TYPE_STRING, 30 );
         $fd_table->column( "time", swoole_table::TYPE_STRING, 20 );
         $fd_table->create();
 
-        $user_table = new swoole_table(8192);
+        $user_table = new swoole_table(1024);
         $user_table->column("fd",swoole_table::TYPE_INT,8);
         $user_table->create();
 
