@@ -70,9 +70,6 @@ class WebSocketServer {
 
     public function onStart( $server)
     {
-//        $this->server->tick(1000, function() {
-//            echo 1;
-//        });
         echo "Start\n";
     }
 
