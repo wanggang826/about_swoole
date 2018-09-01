@@ -10,7 +10,7 @@ class WebSocketServer {
     public function __construct()
     {
         $this->server = new swoole_websocket_server("0.0.0.0",9988);
-        $this->set(array(
+        $this->server->set(array(
 //            'daemonize'       => true,
             'worker_num'      => 4,
             'task_worker_num' => 4
