@@ -150,7 +150,7 @@ if(!$user){
     };
 
     var send_input = document.getElementById('send_txt');
-    send_input.onkeypress = function (){
+    send_input.onkeydown = function (){
         if(event.keyCode == 13){
             sendMassage('all');
         }
