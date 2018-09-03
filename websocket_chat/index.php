@@ -17,7 +17,7 @@
 </body>
 <script>
     if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        document.form.action='test_websocket.php';
+        document.form.action='chat_pc.php';
     } else {
         document.form.action='chat.php';
     }

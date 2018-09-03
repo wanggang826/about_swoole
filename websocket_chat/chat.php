@@ -10,8 +10,8 @@ if(!$user){
     <meta charset="UTF-8">
     <title>chat</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" href="css/chat.css" type="text/css">
-    <script type="text/javascript" src="js/chat.js"></script>
+    <link rel="stylesheet" href="static/css/chat.css" type="text/css">
+    <script type="text/javascript" src="static/js/chat.js"></script>
 </head>
 <body>
 <div class="all">
