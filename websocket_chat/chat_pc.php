@@ -1,7 +1,7 @@
 <?php
 $user = $_POST['name'];
 if(!$user){
-    header('Location:http://sw.wanggangg.top/');
+    header('Location:http://sw.wanggangg.top/websocket_chat/');
 }
 ?>
 <!DOCTYPE html>
@@ -123,7 +123,7 @@ if(!$user){
 </body>
 <script src="./static/js/jquery-1.8.2.min.js"></script>
 <script>
-    var wsServer = 'ws://47.95.236.88:9999';//这里的IP应该更改
+    var wsServer = 'ws://sw.wanggangg.top/websocket_chat:9999';//这里的IP应该更改
     //    var wsServer = 'ws://47.95.236.88:9988';//这里的IP应该更改
     //    var wsServer = 'ws://10.10.10.11:9988';//这里的IP应该更改
     var websocket = new WebSocket(wsServer);
@@ -146,6 +146,13 @@ if(!$user){
     websocket.onerror = function (evt, e) {
         console.log('Error occured: ' + evt.data);
     };
+
+    var send_input = document.getElementById('send_txt');
+    send_input.onkeypress = function (){
+        if(event.keyCode == 13){
+            sendMassage('all');
+        }
+    }
     function sendMassage(to_user){
         var massage=document.getElementById('send_txt').value;
         var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';

@@ -21,8 +21,10 @@ $ws->on('open', function ($ws, $request) use($redis) {
     //记录连接
     $redis->sAdd('fd', $request->fd);
     $count = $redis->sCard('fd');
+
+
     //获取当前所有连接人存为数组
-    $GLOBALS['fd'][] = $request->fd;
+
     $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
 });
 
