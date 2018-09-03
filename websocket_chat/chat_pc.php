@@ -123,7 +123,7 @@ if(!$user){
 </body>
 <script src="./static/js/jquery-1.8.2.min.js"></script>
 <script>
-    var wsServer = 'ws://sw.wanggangg.top/websocket_chat:9999';//这里的IP应该更改
+    var wsServer = 'ws://sw.wanggangg.top:9999';//这里的IP应该更改
     //    var wsServer = 'ws://47.95.236.88:9988';//这里的IP应该更改
     //    var wsServer = 'ws://10.10.10.11:9988';//这里的IP应该更改
     var websocket = new WebSocket(wsServer);
