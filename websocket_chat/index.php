@@ -17,9 +17,9 @@
 </body>
 <script>
     if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        document.form.action='chat_pc.php';
-    } else {
         document.form.action='chat.php';
+    } else {
+        document.form.action='chat_pc.php';
     }
 </script>
 </html>
