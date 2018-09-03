@@ -8,29 +8,124 @@ if(!$user){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>chat</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title><?php echo $user;?></title>
+    <link rel="stylesheet" href="static/css/chat.css" type="text/css">
+    <script type="text/javascript" src="static/js/chat.js"></script>
 </head>
 <body>
-<div style="text-align:center">
-    <div id="div" style="width:99%; height:180px;overflow:auto;background: #bef8ff;display: inline-block;text-align: left;">
+<div class="all">
+    <div class="chat_index">
+        <!--banner-->
+        <div class="chat_banner">
 
-    </div>
-    <br>
-    <div style="display: inline-block;width: 99%">
-        <table style="width: 100%">
-            <tr>
-                <td width="90%"><input type="text" id="text" style="width: 100%;height: 25px;padding-left: 0;margin-left: 0"></td><td ><input type="button" value="发送" onclick="sendMassage('all')" style="height: 31px;width: 100%;"></td>
-            </tr>
-        </table>
+        </div>
+
+        <div class="chat_body">
+            <!--在线列表-->
+            <div class="chat_online">
+                <!--搜索-->
+                <div class="search_online">
+                    <form>
+                        <input type="text" placeholder="搜索联系人">
+                    </form>
+                </div>
+                <div class="online_friend">
+                    <ul>
+                        <li>
+                            <div class="a_friend">
+                                <div class="head_portrait">
+                                    <div class="head_text">
+                                        黄
+                                    </div>
+                                </div>
+                                <div class="friend">
+
+                                    <div class="name">天狼星</div>
+                                    <div class="this_time">4-12-15:10</div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="a_friend">
+                                <div class="head_portrait">
+                                    <div class="head_text">
+                                        黄
+                                    </div>
+                                </div>
+                                <div class="friend">
+
+                                    <div class="name">天狼星</div>
+                                    <div class="this_time">4-12-15:10</div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="a_friend">
+                                <div class="head_portrait">
+                                    <div class="head_text">
+                                        黄
+                                    </div>
+                                </div>
+                                <div class="friend">
+
+                                    <div class="name">天狼星</div>
+                                    <div class="this_time">4-12-15:10</div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="a_friend">
+                                <div class="head_portrait">
+                                    <div class="head_text">
+                                        黄
+                                    </div>
+                                </div>
+                                <div class="friend">
+
+                                    <div class="name">天狼星</div>
+                                    <div class="this_time">4-12-15:10</div>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--聊天界面-->
+            <div class="chat_main">
+                <div class="chat_div" id="div">
+<!--                    <ul id="chat_ul" class="chat_content">-->
+<!---->
+<!--                    </ul>-->
+
+                </div>
+
+                <div class="send_message">
+                    <form>
+                        <input type="text" placeholder="请输入消息" id="send_txt">
+                        <input type="button" value="发送" id="send_btn" onclick="sendMassage('all')">
+                    </form>
+                </div>
+            </div>
+            <!--名片-->
+            <div class="chat_namecard">
+
+            </div>
+        </div>
+
     </div>
 </div>
 </body>
 <script src="static/js/jquery-1.8.2.min.js"></script>
 <script>
     var wsServer = 'ws://47.95.236.88:9999';//这里的IP应该更改
-//    var wsServer = 'ws://47.95.236.88:9988';//这里的IP应该更改
-//    var wsServer = 'ws://10.10.10.11:9988';//这里的IP应该更改
+    //    var wsServer = 'ws://47.95.236.88:9988';//这里的IP应该更改
+    //    var wsServer = 'ws://10.10.10.11:9988';//这里的IP应该更改
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (evt) {
         console.log("Connected to WebSocket server.");
@@ -52,11 +147,12 @@ if(!$user){
         console.log('Error occured: ' + evt.data);
     };
     function sendMassage(to_user){
-        var massage=document.getElementById('text').value;
+        var massage=document.getElementById('send_txt').value;
         var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
         websocket.send(msg);
-        $('#text').val('');
+        $('#send_txt').val('');
     }
 
 </script>
+
 </html>
