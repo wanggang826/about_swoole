@@ -106,10 +106,8 @@ if(!$user){
                 </div>
 
                 <div class="send_message">
-                    <form>
                         <input type="text" placeholder="请输入消息" id="send_txt">
                         <input type="button" value="发送" id="send_btn" onclick="sendMassage('all')">
-                    </form>
                 </div>
             </div>
             <!--名片-->
