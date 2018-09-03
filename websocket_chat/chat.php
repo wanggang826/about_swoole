@@ -1,7 +1,5 @@
 <?php
 $user = $_POST['name'];
-var_dump($user);
-var_dump(!$user);
 if(!$user){
     header('Location:http://sw.wanggangg.top/websocket_chat/');
 }
