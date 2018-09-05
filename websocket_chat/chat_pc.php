@@ -99,7 +99,11 @@ if(!$user){
         var data = eval('(' + evt.data + ')');
         var message = data.message;
         if(data['users']){
-            console.log(data.users);
+            var users = data.users,html='';
+            for(var i=0;i<users.length;i++){
+                html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+users[i].name+"</div></div></li>"
+            }
+            $('#user_list').html(html);
         }
         $('#div').append(message+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
