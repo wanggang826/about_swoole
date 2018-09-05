@@ -33,14 +33,24 @@ $ws->on('message', function ($ws, $frame) use($redis) {
     if($data['type'] ==1 ){
         $redis->set($frame->fd,json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
         //通知所有用户新用户上线
-        $fds = $redis->sMembers('fd');
+        $fds = $redis->sMembers('fd');$users=[];
         foreach ($fds as $fd_on){
-            $ws->push($fd_on,"欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室");
+            $info = $redis->get($fd_on);
+            $users[]['fd']   = $fd_on;
+            $users[]['name'] = json_decode($info,true)['user'];
+            $message = "欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室";
+            $push_data = ['message'=>$message,'users'=>$users];
+            $ws->push($fd_on,json_encode($push_data));
         }
     }else if($data['type'] ==2){
         if($data['to_user'] == 'all'){
             foreach ($fds as $fd){
-                $ws->push($fd,"<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg']);
+                $info = $redis->get($fd);
+                $users[]['fd']   = $fd;
+                $users[]['name'] = json_decode($info,true)['user'];
+                $message = "<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg'];
+                $push_data = ['message'=>$message];
+                $ws->push($fd,json_encode($push_data));
             }
         }
     }
@@ -60,7 +70,12 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
         $user = json_decode($redis->get($fd),true)['user'];
-        $ws->push($fd_on,"<b style='color: blueviolet'>".$user."</b> 离开聊天室了");
+        $info = $redis->get($fd_on);
+        $users[]['fd']   = $fd_on;
+        $users[]['name'] = json_decode($info,true)['user'];
+        $message = "<b style='color: blueviolet'>".$user."</b> 离开聊天室了";
+        $push_data = ['message'=>$message,'users'=>$users];
+        $ws->push($fd_on,json_encode($push_data));
     }
     echo "client-{$fd} is closed\n";
 });
