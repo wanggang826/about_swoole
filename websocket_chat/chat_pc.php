@@ -43,10 +43,12 @@ if(!$user){
                                 $users[$i]['name'] = json_decode($info,true)['user'];
                                 $i++;
                             }
-                        $html='';
-                            foreach ($users as $key=>$value){
-                                $html.= "<li> <div class='a_friend'><div class=''><div class='head_text'>".$value['name']."</div></div>";
-                                $html.= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>";
+                            $html='';
+                            if(!empty($users)){
+                                foreach ($users as $key=>$value){
+                                    $html.= "<li> <div class='a_friend'><div class=''><div class='head_text'>".$value['name']."</div></div>";
+                                    $html.= "</li>";
+                                }
                             }
                             echo $html;
                         ?>
