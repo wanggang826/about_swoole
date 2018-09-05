@@ -93,7 +93,6 @@ if(!$user){
 
     websocket.onmessage = function (evt) {
         console.log(typeof(evt.data));
-        var data =  eval('(' + evt.data + ')');
         var message = evt.data;
         $('#div').append(message+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
