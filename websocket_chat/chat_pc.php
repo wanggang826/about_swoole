@@ -6,10 +6,12 @@ if(!$user){
 $redis = new \Redis();
 $redis->connect('127.0.0.1', 6379);
 $fds = $redis->sMembers('fd');
+$i=0;
 foreach ($fds as $fd_on){
     $info = $redis->get($fd_on);
-    $users[]['fd']   = $fd_on;
-    $users[]['name'] = json_decode($info,true)['user'];
+    $users[$i]['fd']   = $fd_on;
+    $users[$i]['name'] = json_decode($info,true)['user'];
+    $i++;
 }
 ?>
 <!DOCTYPE html>
