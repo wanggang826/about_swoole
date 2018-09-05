@@ -87,7 +87,7 @@ foreach ($fds as $fd_on){
     websocket.onmessage = function (evt) {
         console.log(typeof(evt.data));
         var data =  eval('(' + evt.data + ')');
-        var message = evt.data,user = <?php echo json_encode($users);?>,html='';
+        var message = evt.data,user = "<?php echo json_encode($users);?>",html='';
         console.log(user)
         if(user.length > 0){
             for(var i =0;i<user.length;i++){
