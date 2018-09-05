@@ -42,6 +42,13 @@ foreach ($fds as $fd_on){
                 </div>
                 <div class="online_friend">
                     <ul id="user_list">
+                        <?php
+                            foreach ($users as $key=>$value){
+                                $html= "<li> <div class='a_friend'><div class=''><div class='head_text'>".$value['name']."</div></div>";
+                                $html.= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>";
+                            }
+                            echo $html;
+                        ?>
                     </ul>
                 </div>
 
@@ -87,15 +94,7 @@ foreach ($fds as $fd_on){
     websocket.onmessage = function (evt) {
         console.log(typeof(evt.data));
         var data =  eval('(' + evt.data + ')');
-        var message = evt.data,user = "<?php echo json_encode($users);?>",html='';
-        console.log(user)
-        if(user.length > 0){
-            for(var i =0;i<user.length;i++){
-                html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+user[i].name+"</div></div>"
-                html+= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>"
-            }
-            $("#user_list").append(html);
-        }
+        var message = evt.data;
         $('#div').append(message+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
         // document.getElementById('div').style.background = evt.data;
