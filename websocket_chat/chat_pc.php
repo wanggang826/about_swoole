@@ -32,21 +32,6 @@ if(!$user){
                 </div>
                 <div class="online_friend">
                     <ul id="user_list">
-                        <li>
-                            <div class="a_friend">
-                                <div class="head_portrait">
-                                    <div class="head_text">
-                                        黄
-                                    </div>
-                                </div>
-                                <div class="friend">
-
-                                    <div class="name">天狼星</div>
-                                    <div class="this_time">4-12-15:10</div>
-
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
 
@@ -90,12 +75,13 @@ if(!$user){
     };
 
     websocket.onmessage = function (evt) {
-        console.log(evt);
-        var message = evt.data.msg,user = evt.data.data,html='';
+        console.log(typeof(evt.data));
+        var data =  eval('(' + evt.data + ')');
+        var message = data.msg,user = data.data,html='';
         console.log(user)
         for(var i =0;i<user.length;i++){
-            html+= "<li> <div class='a_friend'><div class='head_portrait'><div class='head_text'>"+user[i].name+"</div></div>"
-            html+= "<div class='friend'><div class='name'>天狼星</div><div class='this_time'>4-12-15:10</div></div></div></li>"
+            html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+user[i].name+"</div></div>"
+            html+= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>"
         }
         $("#user_list").append(html);
         $('#div').append(message+"<br>");
