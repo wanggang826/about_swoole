@@ -27,7 +27,7 @@ if(!$user){
                 <!--搜索-->
                 <div class="search_online">
                     <form>
-                        <input type="text" placeholder="" readonly value="搜索在线用户">
+                        <input type="text" placeholder="" readonly value="在线用户">
                     </form>
                 </div>
                 <div class="online_friend">
