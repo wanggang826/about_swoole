@@ -3,6 +3,14 @@ $user = $_POST['name'];
 if(!$user){
     header('Location:http://sw.wanggangg.top/websocket_chat/');
 }
+$redis = new \Redis();
+$redis->connect('127.0.0.1', 6379);
+$fds = $redis->sMembers('fd');
+foreach ($fds as $fd_on){
+    $info = $redis->get($fd_on);
+    $users[]['fd']   = $fd_on;
+    $users[]['name'] = json_decode($info,true)['user'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,13 +85,15 @@ if(!$user){
     websocket.onmessage = function (evt) {
         console.log(typeof(evt.data));
         var data =  eval('(' + evt.data + ')');
-        var message = data.msg,user = data.data,html='';
+        var message = evt.data,user = <?php echo json_encode($users);?>,html='';
         console.log(user)
-        for(var i =0;i<user.length;i++){
-            html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+user[i].name+"</div></div>"
-            html+= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>"
+        if(user.length > 0){
+            for(var i =0;i<user.length;i++){
+                html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+user[i].name+"</div></div>"
+                html+= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>"
+            }
+            $("#user_list").append(html);
         }
-        $("#user_list").append(html);
         $('#div').append(message+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
         // document.getElementById('div').style.background = evt.data;
