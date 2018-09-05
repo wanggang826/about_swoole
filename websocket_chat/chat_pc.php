@@ -3,16 +3,6 @@ $user = $_POST['name'];
 if(!$user){
     header('Location:http://sw.wanggangg.top/websocket_chat/');
 }
-$redis = new \Redis();
-$redis->connect('127.0.0.1', 6379);
-$fds = $redis->sMembers('fd');
-$i=0;
-foreach ($fds as $fd_on){
-    $info = $redis->get($fd_on);
-    $users[$i]['fd']   = $fd_on;
-    $users[$i]['name'] = json_decode($info,true)['user'];
-    $i++;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +33,16 @@ foreach ($fds as $fd_on){
                 <div class="online_friend">
                     <ul id="user_list">
                         <?php
+                            $redis = new \Redis();
+                            $redis->connect('127.0.0.1', 6379);
+                            $fds = $redis->sMembers('fd');
+                            $i=0;
+                            foreach ($fds as $fd_on){
+                                $info = $redis->get($fd_on);
+                                $users[$i]['fd']   = $fd_on;
+                                $users[$i]['name'] = json_decode($info,true)['user'];
+                                $i++;
+                            }
                             foreach ($users as $key=>$value){
                                 $html= "<li> <div class='a_friend'><div class=''><div class='head_text'>".$value['name']."</div></div>";
                                 $html.= "<div class='friend'><div class='name'></div><div class='this_time'></div></div></div></li>";
