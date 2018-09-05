@@ -42,7 +42,9 @@ if(!$user){
     };
 
     websocket.onmessage = function (evt) {
-        $('#div').append(evt.data+"<br>");
+        var data = eval('(' + evt.data + ')');
+        var message = data.message;
+        $('#div').append(message+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
         // document.getElementById('div').style.background = evt.data;
         console.log('Retrieved data from server: ' + evt.data);
@@ -53,9 +55,14 @@ if(!$user){
     };
     function sendMassage(to_user){
         var massage=document.getElementById('text').value;
-        var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
-        websocket.send(msg);
-        $('#text').val('');
+        if(massage){
+            var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
+            websocket.send(msg);
+            $('#text').val('');
+        }else{
+            alert('请不要惜字如金');
+        }
+
     }
 
 </script>

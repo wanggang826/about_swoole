@@ -11,7 +11,7 @@ if(!$user){
     <title>聊天室--本人:<?php echo $user;?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" href="static/css/chat.css" type="text/css">
-    <script type="text/javascript" src="static/js/chat.js"></script>
+<!--    <script type="text/javascript" src="static/js/chat.js"></script>-->
 </head>
 <body>
 <div class="all">
@@ -123,9 +123,15 @@ if(!$user){
     }
     function sendMassage(to_user){
         var massage=document.getElementById('send_txt').value;
-        var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
-        websocket.send(msg);
-        $('#send_txt').val('');
+        if(massage){
+            var msg = '{"type":"2","msg":"'+massage+'","from_user":"<?php echo $user;?>","to_user":"'+to_user+'"}';
+            websocket.send(msg);
+            $('#send_txt').val('');
+        }else{
+            alert('请不要惜字如金')
+        }
+
+
     }
 
 </script>
