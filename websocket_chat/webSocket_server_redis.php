@@ -21,11 +21,16 @@ $ws->on('open', function ($ws, $request) use($redis) {
     //记录连接
     $redis->sAdd('fd', $request->fd);
     $count = $redis->sCard('fd');
-
-
+    $msg   = 'hello, welcome ☺                     当前'.$count.'人连接在线';
     //获取当前所有连接人存为数组
-
-    $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
+    $fds = $redis->sMembers('fd');
+    foreach ($fds as $fd_on){
+        $info = $redis->get($fd_on);
+        $users[]['fd']   = $fd_on;
+        $users[]['name'] = json_decode($info,true)['user'];
+    }
+    $data = ['msg'=>$msg,'data'=>$users];
+    $ws->push($request->fd, json_encode($data));
 });
 
 //监听WebSocket消息事件
@@ -38,12 +43,14 @@ $ws->on('message', function ($ws, $frame) use($redis) {
         //通知所有用户新用户上线
         $fds = $redis->sMembers('fd');
         foreach ($fds as $fd_on){
-            $ws->push($fd_on,"欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室");
+            $msg = "欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室";
+            $ws->push($fd_on,json_encode(['msg'=>$msg,'data'=>[]]));
         }
     }else if($data['type'] ==2){
         if($data['to_user'] == 'all'){
             foreach ($fds as $fd){
-                $ws->push($fd,"<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg']);
+                $msg = "<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg'];
+                $ws->push($fd,json_encode(['msg'=>$msg,'data'=>[]]));
             }
         }
     }
@@ -63,7 +70,8 @@ $ws->on('close', function ($ws, $fd) use ($redis){
     $fds = $redis->sMembers('fd');
     foreach ($fds as $fd_on){
         $user = json_decode($redis->get($fd),true)['user'];
-        $ws->push($fd_on,"<b style='color: blueviolet'>".$user."</b> 离开聊天室了");
+        $msg = "<b style='color: blueviolet'>".$user."</b> 离开聊天室了";
+        $ws->push($fd_on,json_encode(['msg'=>$msg,'data'=>[]]));
     }
     echo "client-{$fd} is closed\n";
 });

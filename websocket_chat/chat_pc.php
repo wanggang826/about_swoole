@@ -31,52 +31,7 @@ if(!$user){
                     </form>
                 </div>
                 <div class="online_friend">
-                    <ul>
-                        <li>
-                            <div class="a_friend">
-                                <div class="head_portrait">
-                                    <div class="head_text">
-                                        黄
-                                    </div>
-                                </div>
-                                <div class="friend">
-
-                                    <div class="name">天狼星</div>
-                                    <div class="this_time">4-12-15:10</div>
-
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="a_friend">
-                                <div class="head_portrait">
-                                    <div class="head_text">
-                                        黄
-                                    </div>
-                                </div>
-                                <div class="friend">
-
-                                    <div class="name">天狼星</div>
-                                    <div class="this_time">4-12-15:10</div>
-
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="a_friend">
-                                <div class="head_portrait">
-                                    <div class="head_text">
-                                        黄
-                                    </div>
-                                </div>
-                                <div class="friend">
-
-                                    <div class="name">天狼星</div>
-                                    <div class="this_time">4-12-15:10</div>
-
-                                </div>
-                            </div>
-                        </li>
+                    <ul id="user_list">
                         <li>
                             <div class="a_friend">
                                 <div class="head_portrait">
@@ -135,7 +90,15 @@ if(!$user){
     };
 
     websocket.onmessage = function (evt) {
-        $('#div').append(evt.data+"<br>");
+        console.log(evt);
+        var message = evt.data.msg,user = evt.data.data,html='';
+        console.log(user)
+        for(var i =0;i<user.length;i++){
+            html+= "<li> <div class='a_friend'><div class='head_portrait'><div class='head_text'>"+user[i].name+"</div></div>"
+            html+= "<div class='friend'><div class='name'>天狼星</div><div class='this_time'>4-12-15:10</div></div></div></li>"
+        }
+        $("#user_list").append(html);
+        $('#div').append(message+"<br>");
         $('#div').scrollTop($('#div')[0].scrollHeight);
         // document.getElementById('div').style.background = evt.data;
         console.log('Retrieved data from server: ' + evt.data);
