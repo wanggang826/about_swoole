@@ -8,7 +8,7 @@ if(!$user){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>聊天室--本人:<?php echo $user;?></title>
+    <title>聊天室-:<?php echo $user;?></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" href="static/css/chat.css" type="text/css">
 <!--    <script type="text/javascript" src="static/js/chat.js"></script>-->
