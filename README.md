@@ -5,7 +5,7 @@
 
 ### websocket_chat
 #### 简易网页聊天演示 http://sw.wanggangg.top/websocket_chat
-#### webSocket_server_swoole1 use redis , webSocket_server_swoole3 use swoole_table
+#### webSocket_server_redis use redis , webSocket_server_swoole_table use swoole_table
 
 
 ### swoole 编译安装简单应用:https://www.cnblogs.com/yimingwang/p/9468998.html
