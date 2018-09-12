@@ -11,9 +11,7 @@
 $server = new swoole_server('127.0.0.1',9898);
 
 $server->set(array(
-    "reactor_num" => 4,  //
-    //'daemonize' => 1,      //守护进程运行
-    //'worker_num' => 4,   //设置启动的Worker进程数。
+    'worker_num' => 4,   //设置启动的Worker进程数。
 ));
 
 //监听worker进程启动
