@@ -12,8 +12,7 @@ $redis = new \Redis();
 $redis->connect('127.0.0.1', 6379);
 
 $ws->set(array(
-    'daemonize' => false,
-    'worker_num' => 4,
+    'daemonize' => true,
 ));
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) use($redis) {
@@ -21,7 +20,6 @@ $ws->on('open', function ($ws, $request) use($redis) {
     //记录连接
     $redis->sAdd('fd', $request->fd);
     $count = $redis->sCard('fd');
-    var_dump($count);
     $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
 });
 
@@ -53,6 +51,12 @@ $ws->on('message', function ($ws, $frame) use($redis) {
         }
     }
     echo "Message: {$frame->data}\n";
+
+    //循环所有连接人发送内容
+    //foreach($ws->connections as $key => $fd) {
+        //$user_message = $frame->data;
+        //$ws->push($fd, $frame->fd.'say:'.$user_message);
+    //}
 });
 
 //监听WebSocket连接关闭事件
