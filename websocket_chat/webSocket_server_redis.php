@@ -13,6 +13,7 @@ $redis->connect('127.0.0.1', 6379);
 
 $ws->set(array(
     'daemonize' => true,
+    'worker_num'      => 4,
 ));
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) use($redis) {
