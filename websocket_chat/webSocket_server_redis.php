@@ -46,9 +46,9 @@ $ws->on('message', function ($ws, $frame) use($redis) {
         if($data['to_user'] == 'all'){
             foreach ($fds as $fd){
                 if($frame->fd == $fd){
-                    $message = "<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg'];
-                }else{
                     $message = "<b style='color: crimson;margin-right: 10px;'> 寡人say:</b>  ".$data['msg'];
+                }else{
+                    $message = "<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg'];
                 }
                 $push_data = ['message'=>$message];
                 $ws->push($fd,json_encode($push_data));
