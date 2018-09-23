@@ -7,7 +7,10 @@
  */
 //创建websocket服务器对象，监听0.0.0.0:9999端口
 $ws = new swoole_websocket_server("0.0.0.0", 9999);
-
+$isNotWorking = @!$ws->connect( '127.0.0.1', 9999, 0.1 );
+if($isNotWorking){
+    
+}
 $redis = new \Redis();
 $redis->connect('127.0.0.1', 6379);
 
