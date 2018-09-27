@@ -15,7 +15,7 @@ if($isNotWorking){
 
     $ws->set(array(
         'daemonize' => true,
-        'worker_num'      => 4,
+        'worker_num'      => 1,
     ));
 //监听WebSocket连接打开事件
     $ws->on('open', function ($ws, $request) use($redis) {
@@ -87,5 +87,5 @@ if($isNotWorking){
     $ws->start();
 
 }else{
-    echo "server is doing";
+    echo "server is doing\n";
 }
