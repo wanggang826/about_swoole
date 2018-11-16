@@ -11,7 +11,7 @@ class WebSocketServer {
     {
         $this->server = new swoole_websocket_server("0.0.0.0",9988);
         $this->server->set(array(
-//            'daemonize'       => true,
+           'daemonize'       => true,
             'worker_num'      => 4,
             'task_worker_num' => 4
         ));
