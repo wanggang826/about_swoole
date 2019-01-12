@@ -21,7 +21,7 @@ if($isNotWorking){
     $ws->on('open', function ($ws, $request) use($redis) {
         var_dump($request->fd, $request->get, $request->server);
         //记录连接
-        $redis->sAdd('fd', $request->fd);
+        $redis->sAdd('fd', '30',$request->fd);
         $count = $redis->sCard('fd');
         $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
     });
