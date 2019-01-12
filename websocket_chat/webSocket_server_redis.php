@@ -39,6 +39,9 @@ if($isNotWorking){
                 $info = $redis->get($fd_on);
                 $users[$i]['fd']   = $fd_on;
                 $users[$i]['name'] = json_decode($info,true)['user'];
+                $i++;
+            }
+            foreach ($fds as $fd_on){
                 $message = "欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室";
                 $push_data = ['message'=>$message,'users'=>$users];
                 $ws->push($fd_on,json_encode($push_data));
