@@ -77,16 +77,22 @@ if($isNotWorking){
     $ws->on('close', function ($ws, $fd) use ($redis){
         $redis->sRem('fd',$fd);
         $fds = $redis->sMembers('fd');
-        $i=0;
+        $i=0;$users=[];
+        foreach ($fds as $fd_on){
+            $info = $redis->get($fd_on);
+            if($info != 'nil'){
+                $users[$i]['fd']   = $fd_on;
+                $users[$i]['name'] = json_decode($info,true)['user'];
+            }else{
+                $redis->sRem('fd',$fd_on);
+            }
+            $i++;
+        }
         foreach ($fds as $fd_on){
             $user = json_decode($redis->get($fd),true)['user'];
-            $info = $redis->get($fd_on);
-            $users[$i]['fd']   = $fd_on;
-            $users[$i]['name'] = json_decode($info,true)['user'];
             $message = "<b style='color: blueviolet'>".$user."</b> 离开聊天室了";
             $push_data = ['message'=>$message,'users'=>$users];
             $ws->push($fd_on,json_encode($push_data));
-            $i++;
         }
         echo "client-{$fd} is closed\n";
     });
