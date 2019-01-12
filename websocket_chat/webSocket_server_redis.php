@@ -37,7 +37,7 @@ if($isNotWorking){
             $i=0;
             foreach ($fds as $fd_on){
                 $info = $redis->get($fd_on);
-                if($info){
+                if($info != 'nil'){
                     $users[$i]['fd']   = $fd_on;
                     $users[$i]['name'] = json_decode($info,true)['user'];
                 }else{

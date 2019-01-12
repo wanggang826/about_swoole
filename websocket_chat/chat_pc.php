@@ -39,7 +39,7 @@ if(!$user){
                             $i=0;
                             foreach ($fds as $fd_on){
                                 $info = $redis->get($fd_on);
-                                if($info){
+                                if($info != 'nil'){
                                     $users[$i]['fd']   = $fd_on;
                                     $users[$i]['name'] = json_decode($info,true)['user'];
                                 }else{
@@ -103,7 +103,7 @@ if(!$user){
         var data = eval('(' + evt.data + ')');
         var message = data.message;
         console.log(data);
-        if(data['users']){
+        if(data.users){
             var users = data.users,html='';
             for(var i=0;i<users.length;i++){
                 html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+users[i].name+"</div></div></li>"
