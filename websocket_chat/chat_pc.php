@@ -43,7 +43,7 @@ if(!$user){
                                     $users[$i]['fd']   = $fd_on;
                                     $users[$i]['name'] = json_decode($info,true)['user'];
                                 }else{
-                                    $redis->sRem('fd',$fd);
+                                    $redis->sRem('fd',$fd_on);
                                 }
                                 $i++;
                             }
