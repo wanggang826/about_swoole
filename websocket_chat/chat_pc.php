@@ -98,8 +98,7 @@ if(!$user){
         console.log(typeof(evt.data));
         var data = eval('(' + evt.data + ')');
         var message = data.message;
-        console.log(data);
-        if(data.users){
+        if(data['users']){
             var users = data.users,html='';
             for(var i=0;i<users.length;i++){
                 html+= "<li> <div class='a_friend'><div class=''><div class='head_text'>"+users[i].name+"</div></div></li>"
