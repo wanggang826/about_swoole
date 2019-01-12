@@ -21,7 +21,7 @@ if($isNotWorking){
     $ws->on('open', function ($ws, $request) use($redis) {
         var_dump($request->fd, $request->get, $request->server);
         //记录连接
-        $redis->sAdd('fd', '30',$request->fd);
+        $redis->sAdd('fd',$request->fd);
         $count = $redis->sCard('fd');
         $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
     });
@@ -31,7 +31,7 @@ if($isNotWorking){
         $fds  = $redis->sMembers('fd');
         $data = json_decode($frame->data,true);
         if($data['type'] ==1 ){
-            $redis->set($frame->fd,json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
+            $redis->setex($frame->fd,'30',json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
             //通知所有用户新用户上线
             $fds = $redis->sMembers('fd');$users=[];
             $i=0;
