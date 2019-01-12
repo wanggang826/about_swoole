@@ -31,7 +31,7 @@ if($isNotWorking){
         $fds  = $redis->sMembers('fd');
         $data = json_decode($frame->data,true);
         if($data['type'] ==1 ){
-            $redis->setex($frame->fd,'30',json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
+            $redis->setex($frame->fd,'1800',json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
             //通知所有用户新用户上线
             $fds = $redis->sMembers('fd');$users=[];
             $i=0;
