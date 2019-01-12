@@ -37,7 +37,8 @@ if($isNotWorking){
             $i=0;
             foreach ($fds as $fd_on){
                 $info = $redis->get($fd_on);
-                if($info != 'nil'){
+                $is_time = $redis->ttl($fd_on);
+                if($is_time){
                     $users[$i]['fd']   = $fd_on;
                     $users[$i]['name'] = json_decode($info,true)['user'];
                 }else{
@@ -80,7 +81,8 @@ if($isNotWorking){
         $i=0;$users=[];
         foreach ($fds as $fd_on){
             $info = $redis->get($fd_on);
-            if($info != 'nil'){
+            $is_time = $redis->ttl($fd_on);
+            if($is_time){
                 $users[$i]['fd']   = $fd_on;
                 $users[$i]['name'] = json_decode($info,true)['user'];
             }else{
