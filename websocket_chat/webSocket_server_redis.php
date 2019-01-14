@@ -40,7 +40,8 @@ if($isNotWorking){
                 $is_time = $redis->ttl($fd_on);
                 if($is_time){
                     $users[$i]['fd']   = $fd_on;
-                    $users[$i]['name'] = json_decode($info,true)['user'];
+//                    $users[$i]['name'] = json_decode($info,true)['user'];
+                    $users[$i]['name'] = $is_time;
                 }else{
                     $redis->sRem('fd',$fd_on);
                 }
