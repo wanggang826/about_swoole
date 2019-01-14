@@ -48,7 +48,7 @@ if($isNotWorking){
                 $i++;
             }
             foreach ($fds as $fd_on){
-                $message = "欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室";
+                $message = date('Y-m-d H:i:s',time())."欢迎 <b style='color: darkmagenta ;'>".$data['user']."</b> 进入聊天室";
                 $push_data = ['message'=>$message,'users'=>$users];
                 $ws->push($fd_on,json_encode($push_data));
                 $i++;
@@ -57,9 +57,9 @@ if($isNotWorking){
             if($data['to_user'] == 'all'){
                 foreach ($fds as $fd){
                     if($frame->fd == $fd){
-                        $message = "<b style='color: crimson;margin-right: 10px;'> 寡人say:</b>  ".$data['msg'];
+                        $message = date('Y-m-d H:i:s',time())."<b style='color: crimson;margin-right: 10px;'> 寡人say:</b>  ".$data['msg'];
                     }else{
-                        $message = "<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg'];
+                        $message = date('Y-m-d H:i:s',time())."<b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg'];
                     }
                     $push_data = ['message'=>$message];
                     $ws->push($fd,json_encode($push_data));
@@ -93,7 +93,7 @@ if($isNotWorking){
         }
         foreach ($fds as $fd_on){
             $user = json_decode($redis->get($fd),true)['user'];
-            $message = "<b style='color: blueviolet'>".$user."</b> 离开聊天室了";
+            $message = date('Y-m-d H:i:s',time())."<b style='color: blueviolet'>".$user."</b> 离开聊天室了";
             $push_data = ['message'=>$message,'users'=>$users];
             $ws->push($fd_on,json_encode($push_data));
         }
