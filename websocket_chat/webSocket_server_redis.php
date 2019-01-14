@@ -38,10 +38,10 @@ if($isNotWorking){
             foreach ($fds as $fd_on){
                 $info = $redis->get($fd_on);
                 $is_time = $redis->ttl($fd_on);
-                if($is_time){
+                if($is_time > 0){
                     $users[$i]['fd']   = $fd_on;
-//                    $users[$i]['name'] = json_decode($info,true)['user'];
-                    $users[$i]['name'] = $is_time;
+                    $users[$i]['name'] = json_decode($info,true)['user'];
+//                    $users[$i]['name'] = $is_time;
                 }else{
                     $redis->sRem('fd',$fd_on);
                 }
