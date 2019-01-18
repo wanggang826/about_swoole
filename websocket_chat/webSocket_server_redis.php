@@ -57,7 +57,7 @@ if($isNotWorking){
             if($data['to_user'] == 'all'){
                 foreach ($fds as $fd){
                     if($frame->fd == $fd){
-                        $message = "<p style='margin-right: 5px;'>".date('Y-m-d H:i:s',time())."<br><b style='color:blue;'> 寡人say:</b>  ".$data['msg']."<br></p>";
+                        $message = "<p style='text-align: right'>".date('Y-m-d H:i:s',time())."<br><b style='color:blue;'> 寡人say:</b>  ".$data['msg']."<br></p>";
                     }else{
                         $message = date('Y-m-d H:i:s',time())."<br><b style='color: crimson'>".$data['from_user']." say:</b>  ".$data['msg']."<br>";
                     }
