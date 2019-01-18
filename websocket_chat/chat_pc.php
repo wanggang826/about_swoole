@@ -64,9 +64,9 @@ if(!$user){
             <!--聊天界面-->
             <div class="chat_main">
                 <div class="chat_div" id="div">
-<!--                    <ul id="chat_ul" class="chat_content">-->
-<!---->
-<!--                    </ul>-->
+                    <ul id="chat_ul" class="chat_content">
+
+                    </ul>
 
                 </div>
 
@@ -111,8 +111,8 @@ if(!$user){
             }
             $('#user_list').html(html);
         }
-        $('#div').append(message+"<br>");
-        $('#div').scrollTop($('#div')[0].scrollHeight);
+        $('#chat_ul').append(message+"<br>");
+        $('#chat_ul').scrollTop($('#chat_ul')[0].scrollHeight);
         // document.getElementById('div').style.background = evt.data;
         console.log('Retrieved data from server: ' + evt.data);
     };
