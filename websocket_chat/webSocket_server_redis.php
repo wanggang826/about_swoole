@@ -12,6 +12,7 @@ if($isNotWorking){
     $ws = new swoole_websocket_server("0.0.0.0", 9999);
     $redis = new \Redis();
     $redis->connect('127.0.0.1', 6379);
+    $redis->auth('wanggang826');
 
     $ws->set(array(
         'daemonize' => true,
@@ -22,13 +23,13 @@ if($isNotWorking){
         var_dump($request->fd, $request->get, $request->server);
         //记录连接
         $redis->sAdd('fd',$request->fd);
-        $count = $redis->sCard('fd');
+        $count = $redis->sCard('fd'); //集合中元素的数量
         $ws->push($request->fd, 'hello, welcome ☺                     当前'.$count.'人连接在线');
     });
 
 //监听WebSocket消息事件
     $ws->on('message', function ($ws, $frame) use($redis) {
-        $fds  = $redis->sMembers('fd');
+        $fds  = $redis->sMembers('fd'); //获取集合中所有成员元素
         $data = json_decode($frame->data,true);
         if($data['type'] ==1 ){
             $redis->setex($frame->fd,'7200',json_encode(['fd'=>$frame->fd,'user'=>$data['user']]));
